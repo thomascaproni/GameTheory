@@ -2,15 +2,15 @@ clc; clear all;
 
 M = [3 3];  %vetor com número de estratégias de cada jogador
 %Matriz de Pay-offs para combinações de estratégias
-U = [1,1;
+U = [1,5;
     1,4;
-    1,4;
-    1,4;
-    1,5;
+    1,3;
+    4,1;
+    3,1;
+    1,1;
     1,1;
     2,1;
-    3,1;
-    4,1]
+    3,1]
     
 p = 1; V = 1; %inicializando as variaveis p e v
 n = length(M); %tamanho da maior dimensão da matriz
