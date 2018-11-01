@@ -1,7 +1,17 @@
 clc; clear all;
 
 M = [3 3];  %vetor com número de estratégias de cada jogador
-U = [0.75,0.9;0.75,1;0.75,1.1;1,0.9;1,1;1,1.1;1.25,0.9;1.25,1;1.25,1.1]; %Matriz de Pay-offs para combinações de estratégias
+%Matriz de Pay-offs para combinações de estratégias
+U = [1,1;
+    1,4;
+    1,4;
+    1,4;
+    1,5;
+    1,1;
+    2,1;
+    3,1;
+    4,1]
+    
 p = 1; V = 1; %inicializando as variaveis p e v
 n = length(M); %tamanho da maior dimensão da matriz
 s = sum(M); %soma dos elementos da matriz m
@@ -12,15 +22,11 @@ for i = 1 : n
     p = p * M(1,i);
 end
 
-if p ~= size(U,1) || n ~= size(U,2)   %teste de dimensionamento
-     error('Error: Dimension mismatch!');
- end
-
 P = zeros(1,n); %inicializando a matriz P
 N = zeros(1,n); %inicializando a matriz N
 P(n) = 1;
 
-for i = n-1 : -1 : 1    %problemas
+for i = n-1 : -1 : 1    %P=problemas
     P(i) = P(i+1) * M(i+1);
 end
 
@@ -92,8 +98,7 @@ for i = 1 : n
     ub(s+i) = inf;
 end
 
-[x,fval,exitflag,output] = game(n,Us,p,I,s,ub,lb,x0,Aeq,beq,pay,U)
-
+[x] = game(n,Us,p,I,s,ub,lb,x0,Aeq,beq,pay,U);
       
 count = 0;
 
@@ -104,7 +109,5 @@ for i = 1 : n
     end
     payoff(1,i) = x(s+i);
 end
-A
 payoff
-% iterations = output.iterations;
-% err = abs(fval)
+A

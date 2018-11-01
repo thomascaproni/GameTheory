@@ -43,8 +43,5 @@ function [x,fval,exitflag,output] = game(n,Us,p,I,s,ub,lb,x0,Aeq,beq,pay,U)
         ceq = [];
     end
 
-options = optimset('Display','off');
-warning 'off' 'all';
-[x,fval,exitflag,output] = fmincon(@myfun,x0,[],[],Aeq,beq,lb,ub,@confun,options);
-
+[x] = fmincon(@myfun,x0,[],[],Aeq,beq,lb,ub,@confun);
 end
